@@ -1,8 +1,7 @@
 FROM phusion/baseimage:0.9.15
 MAINTAINER pducharme@me.com
 # Set correct environment variables
-E
-NV HOME /root
+ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
 ENV LANG en_US.UTF-8
