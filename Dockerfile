@@ -1,14 +1,36 @@
 FROM phusion/baseimage:0.9.15
 MAINTAINER pducharme@me.com
-
+# Set correct environment variables
+E
+NV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
+ENV LC_ALL C.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
 
-RUN apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y
+# Use baseimage-docker's init system
+CMD ["/sbin/my_init"]
 
-# Common Deps
+# Configure user nobody to match unRAID's settings
+ RUN \
+ usermod -u 99 nobody && \
+ usermod -g 100 nobody && \
+ usermod -d /home nobody && \
+ chown -R nobody:users /home
+
+# Disable SSH
+RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
+
+#Install DDNSnix
+RUN \
+  apt-get update -q && \
+  apt-get upgrade -y && \
+  apt-get dist-upgrade -y
+
+# Install Common Dependencies
 RUN apt-get -y install curl software-properties-common
 
-# Oracle Java 8
+# Install Oracle Java 8
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 RUN add-apt-repository ppa:webupd8team/java && apt-get update
 RUN apt-get -y install oracle-java8-installer
