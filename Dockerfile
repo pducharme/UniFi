@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.15
+FROM phusion/baseimage:0.9.16
 MAINTAINER pducharme@me.com
 # Set correct environment variables
 ENV HOME /root
@@ -17,10 +17,8 @@ CMD ["/sbin/my_init"]
  usermod -d /home nobody && \
  chown -R nobody:users /home
 
-# Disable SSH
-RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 
-#Install DDNSnix
+#Update APT-GET list
 RUN \
   apt-get update -q && \
   apt-get upgrade -y && \
@@ -44,7 +42,7 @@ RUN apt-get update && apt-get -y install mongodb-server
 
 # UniFi 4.x
 RUN apt-get -y install jsvc
-RUN curl -L -o unifi_sysvinit_all.deb http://www.ubnt.com/downloads/unifi/4.5.2-awli39/unifi_sysvinit_all.deb
+RUN curl -L -o unifi_sysvinit_all.deb http://www.ubnt.com/downloads/unifi/4.6.0/unifi_sysvinit_all.deb
 RUN dpkg --install unifi_sysvinit_all.deb
 
 # Wipe out auto-generated data
