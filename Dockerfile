@@ -42,7 +42,7 @@ RUN apt-get update && apt-get -y install mongodb-server
 
 # UniFi 4.x
 RUN apt-get -y install jsvc
-RUN curl -L -o unifi_sysvinit_all.deb https://www.ubnt.com/downloads/unifi/4.6.4-ade9eed/unifi_sysvinit_all.deb
+RUN curl -L -o unifi_sysvinit_all.deb https://www.ubnt.com/downloads/unifi/4.6.6-bec4a09/unifi_sysvinit_all.deb
 RUN dpkg --install unifi_sysvinit_all.deb
 
 # Wipe out auto-generated data
