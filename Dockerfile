@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.17
+FROM phusion/baseimage:0.9.18
 MAINTAINER pducharme@me.com
 # Set correct environment variables
 ENV HOME /root
@@ -42,7 +42,7 @@ RUN apt-get update && apt-get -y install mongodb-server
 
 # UniFi 4.x
 RUN apt-get -y install jsvc
-RUN curl -L -o unifi_sysvinit_all.deb http://www.ubnt.com/downloads/unifi/4.7.6-sp783omb/unifi_sysvinit_all.deb
+RUN curl -L -o unifi_sysvinit_all.deb http://www.ubnt.com/downloads/unifi/4.8.12/unifi_sysvinit_all.deb
 RUN dpkg --install unifi_sysvinit_all.deb
 
 # Wipe out auto-generated data
