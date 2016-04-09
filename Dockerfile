@@ -40,7 +40,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 ADD mongodb.list /etc/apt/sources.list.d/mongodb.list
 RUN apt-get update && apt-get -y install mongodb-server
 
-# UniFi 4.x
+# UniFi 4.8.15
 RUN apt-get -y install jsvc
 RUN curl -L -o unifi_sysvinit_all.deb http://www.ubnt.com/downloads/unifi/4.8.14/unifi_sysvinit_all.deb
 RUN dpkg --install unifi_sysvinit_all.deb
@@ -58,3 +58,4 @@ ADD run.sh /run.sh
 RUN chmod 755 /run.sh
 
 CMD ["/run.sh"]
+
