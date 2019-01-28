@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
+ENV version 5.9.29
 
 # Use baseimage-docker's init system
 CMD ["/sbin/my_init"]
